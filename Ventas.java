@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+//import java.util.Scanner;
 
 public class Ventas {
     public static void main(String[] args) {
@@ -10,15 +11,29 @@ public class Ventas {
         clts.add(new Cliente("Pulse", "Yennifer", "Tarapoto", "9995559"));
         clts.add(new Cliente("Hualinus", "Jenny", "Piura", "7079999"));
         clts.forEach(c -> System.out.println(c.toString()));
-        System.out.println("-----------------------------------------------------------------------");
-
+        /*
+         * System.out.println(
+         * "-----------------------------------------------------------------------");
+         * Scanner ent = new Scanner(System.in);
+         * System.out.println("Escriba la cantidad e afiliados");
+         * int tm = ent.nextInt();
+         * ent.close();
+         */
         Afiliado[] afls = new Afiliado[3];
+        /*
+         * for(int k=0; k<tm;k++){
+         * Afiliado t= new Afiliado("Tolosa", "María", "Lima", 1, 250);
+         * t.setApellido(ent.nextLine());
+         * afls[k]=t;
+         * 
+         * }
+         */
+
         afls[0] = new Afiliado("Tolosa", "María", "Lima", 1, 250);
         afls[1] = new Afiliado("Linares", "Ángel", "Huancayo", 2, 1000);
         afls[2] = new Afiliado("Lobo", "Víctor", "Cusco", 3, 5000);
-        for (Afiliado a : afls) {
-            System.out.println(a.toString());
-        }
+        System.out.println("-----------------------------------------------------------------------");
+        Imprimir.imprime(afls);
         System.out.println("-----------------------------------------------------------------------");
     }
 }
@@ -130,4 +145,15 @@ class Cliente extends Person implements Pedido {
 
 interface Pedido {
     public String orden();
+}
+
+class Imprimir {
+    static void imprime(Afiliado[] af) {
+        for (Afiliado a : af) {
+            System.out.printf("El afiliado %2d : %14s  debe vender %8.2f%s ", a.getId(), a.getNombre(), a.getMonto(),
+                    (a.getMonto() > 999) ? "+" : "-");
+            System.out.println("\n");
+        }
+
+    }
 }
